@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,27 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 5f;
+    public float runSpeed = 8f;
     Vector2 moveInput;
+
+    public float CurrentMoveSpeed { get
+        {
+            if (IsMoving)
+            {
+                if (IsRunning)
+                {
+                    return runSpeed;
+                } else
+                {
+                    return walkSpeed;
+                }
+                } else
+            {
+                // Idle speed is 0
+                return 0;
+            }
+        }
+    }
 
     [SerializeField]
     private bool _isMoving = false;
@@ -20,7 +41,7 @@ public class PlayerController : MonoBehaviour
         private set
         {
             _isMoving = value;
-            animator.SetBool("isMoving", value);
+            animator.SetBool(AnimationStrings.isMoving, value);
         }
     }
     [SerializeField]
@@ -35,10 +56,22 @@ public class PlayerController : MonoBehaviour
         set
         {
             _isRunning = value;
-            animator.SetBool("isRunning", value);
+            animator.SetBool(AnimationStrings.isRunning, value);
         }
     }
-    
+
+    public bool _IsFacingRight = true;
+
+    public bool IsFacingRight { get { return _IsFacingRight; } private set  {
+            if(IsFacingRight !=value)
+            {
+                //Flip the local scale to make the player face opposite direction
+                transform.localScale *= new Vector2(-1, 1);
+            }
+
+            _IsFacingRight = value;
+
+        } } 
     Rigidbody2D rb;
     Animator animator;
 
@@ -62,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -70,6 +103,22 @@ public class PlayerController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
 
         IsMoving = moveInput != Vector2.zero;
+
+        SetFacingDirection(moveInput);
+    }
+
+    private void SetFacingDirection(Vector2 moveInput)
+    {
+        if (moveInput.x > 0 && !IsFacingRight)
+        {
+            //Face the right
+            IsFacingRight = true;   
+        }
+        else if (moveInput.x < 0 && IsFacingRight)
+        {
+            //Face the left
+            IsFacingRight = false;
+        }
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -77,8 +126,7 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             IsRunning = true;
-        }
-        else if (context.canceled)
+        } else if (context.canceled)
         {
             IsRunning = false;  
         }
