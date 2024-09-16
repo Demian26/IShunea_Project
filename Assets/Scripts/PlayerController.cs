@@ -9,23 +9,34 @@ public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 5f;
     public float runSpeed = 8f;
+    public float airWalkSpeed = 3f;
     public float jumpImpulse = 10f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
 
     public float CurrentMoveSpeed { get
         {
-            if (IsMoving)
+            if (IsMoving && !touchingDirections.IsOnWall)
             {
-                if (IsRunning)
+                if (touchingDirections.IsGrounded)
                 {
-                    return runSpeed;
-                } else
-                {
-                    return walkSpeed;
+                    if (IsRunning)
+                    {
+                        return runSpeed;
+                    }
+                    else
+                    {
+                        return walkSpeed;
+                    }
                 }
-                } else
-            {
+                else
+                {
+                    //Air Move
+                    return airWalkSpeed;
+                }
+            }
+            else
+            { 
                 // Idle speed is 0
                 return 0;
             }
@@ -90,7 +101,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
-    }
+}
 
     public void OnMove(InputAction.CallbackContext context)
     {
