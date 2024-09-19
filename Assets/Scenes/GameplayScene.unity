@@ -11822,6 +11822,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1287043229771506166, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: walkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287043229771506166, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: walkStopRate
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156809995797155930, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: m_Size.x
+      value: 3.627367
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156809995797155930, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.14083385
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156809995797155930, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4785560263808864152, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: m_Size.y
       value: 2.356245
@@ -11869,6 +11889,10 @@ PrefabInstance:
     - target: {fileID: 6136356456435697572, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7116426691401980579, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: m_Name
+      value: DetectionZone
       objectReference: {fileID: 0}
     - target: {fileID: 8963780048207034707, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: m_Name
