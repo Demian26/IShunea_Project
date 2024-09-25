@@ -11545,6 +11545,10 @@ PrefabInstance:
       propertyPath: walkStopRate
       value: 0.44
       objectReference: {fileID: 0}
+    - target: {fileID: 1287043229771506166, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: walkAcceleration
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3156809995797155930, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: m_Size.x
       value: 3.023386
@@ -11570,8 +11574,16 @@ PrefabInstance:
       value: CliffDetectionZone
       objectReference: {fileID: 0}
     - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: _health
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: _maxHealth
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: invincibilityTime
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.size
@@ -11596,6 +11608,14 @@ PrefabInstance:
     - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424976992037526649, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: knockback.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424976992037526649, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: attackDamage
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4785560263808864152, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: m_Size.y
@@ -11651,7 +11671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8963780048207034707, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: m_Name
-      value: KnightEnemy (1)
+      value: KnightEnemy 2
       objectReference: {fileID: 0}
     - target: {fileID: 8963780048207034707, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: m_Layer
@@ -12335,19 +12355,35 @@ PrefabInstance:
       propertyPath: ceilingDistance
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2118634765159197882, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: knockback.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118634765159197882, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: knockback.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2879161159307758225, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3434136814016522956, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3580725970706755012, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
       propertyPath: knockback.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3580725970706755012, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
       propertyPath: knockback.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3639958050098493575, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010157686868258898, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -12391,9 +12427,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4479386632314398649, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: knockback.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479386632314398649, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: knockback.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479386632314398649, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: attackDamage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343570482898366170, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: _health
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343570482898366170, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: _maxHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6343570482898366170, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
       propertyPath: invincibilityTime
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6471281396589642302, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
@@ -12431,6 +12487,26 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.22903872
       objectReference: {fileID: 0}
+    - target: {fileID: 7103248561337127191, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: knockback.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103248561337127191, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: knockback.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103248561337127191, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: attackDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919025378882171645, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919025378882171645, guid: e33e4e98b826ea7448a622a56a30e2dd, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12455,6 +12531,10 @@ PrefabInstance:
     - target: {fileID: 1287043229771506166, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: walkStopRate
       value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287043229771506166, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: walkAcceleration
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3156809995797155930, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: m_Size.x
@@ -12481,8 +12561,16 @@ PrefabInstance:
       value: CliffDetectionZone
       objectReference: {fileID: 0}
     - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: _health
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: _maxHealth
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: invincibilityTime
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.size
@@ -12507,6 +12595,14 @@ PrefabInstance:
     - target: {fileID: 4329984725742483230, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424976992037526649, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: knockback.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424976992037526649, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
+      propertyPath: attackDamage
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4785560263808864152, guid: 45afda161c702044fa6bc55fc776a9cb, type: 3}
       propertyPath: m_Size.y
