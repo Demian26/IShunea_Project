@@ -318,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 4.4
+  fadeDelay: 2.6
 --- !u!1107 &1335764494496152725
 AnimatorStateMachine:
   serializedVersion: 6
