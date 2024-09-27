@@ -12718,11 +12718,11 @@ PrefabInstance:
       objectReference: {fileID: 104079391}
     - target: {fileID: 4323729420575934558, guid: c31e3f5fdba50b44ea3a3895b9ff77bb, type: 3}
       propertyPath: _health
-      value: 300
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4323729420575934558, guid: c31e3f5fdba50b44ea3a3895b9ff77bb, type: 3}
       propertyPath: _maxHealth
-      value: 300
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4323729420575934558, guid: c31e3f5fdba50b44ea3a3895b9ff77bb, type: 3}
       propertyPath: damageableDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
