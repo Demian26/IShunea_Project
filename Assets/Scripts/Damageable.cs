@@ -45,6 +45,8 @@ public class Damageable : MonoBehaviour
             if (_health <= 0)
             {
                 IsAlive = false;
+                if (gameObject.CompareTag("Player"))
+                    FindObjectOfType<PauseMenu>().GameOver();
             }
         }
     }

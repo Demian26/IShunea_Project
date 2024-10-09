@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private AudioClip gameOverSound;
+    private AudioSource audioSource;
 
     [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
@@ -14,43 +15,58 @@ public class PauseMenu : MonoBehaviour
     {
         gameOverScreen.SetActive(false);
         pauseScreen.SetActive(false);
+
+        // Получаем компонент AudioSource для воспроизведения звуков
+        audioSource = GetComponent<AudioSource>();
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //If pause screen already active unpause and viceversa
             PauseGame(!pauseScreen.activeInHierarchy);
         }
     }
 
     #region Game Over
-    //Activate game over screen
     public void GameOver()
     {
+        // Включаем экран Game Over
         gameOverScreen.SetActive(true);
+
+        // Воспроизводим звук Game Over (если назначен)
+        if (gameOverSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(gameOverSound);
+        }
+
+        // Останавливаем время
+        Time.timeScale = 0;
     }
 
-    //Restart level
     public void Restart()
     {
+        if (gameOverScreen.activeInHierarchy)
+        {
+            gameOverScreen.SetActive(false); // Скрыть экран Game Over, если он активен
+        }
+
+        Time.timeScale = 1; // Убедитесь, что время восстановлено
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Time.timeScale = 1;
     }
 
-    //Main Menu
     public void MainMenu()
     {
+        Time.timeScale = 1; // Возвращаем нормальную скорость времени
         SceneManager.LoadScene(0);
     }
 
-    //Quit game/exit play mode if in Editor
     public void Quit()
     {
-        Application.Quit(); //Quits the game (only works in build)
+        Application.Quit();
 
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; //Exits play mode (will only be executed in the editor)
+        UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
     #endregion
@@ -58,11 +74,9 @@ public class PauseMenu : MonoBehaviour
     #region Pause
     public void PauseGame(bool status)
     {
-        //If status == true pause | if status == false unpause
         pauseScreen.SetActive(status);
 
-        //When pause status is true change timescale to 0 (time stops)
-        //when it's false change it back to 1 (time goes by normally)
+        // Приостановка времени при паузе
         if (status)
             Time.timeScale = 0;
         else

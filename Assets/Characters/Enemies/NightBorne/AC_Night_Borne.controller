@@ -499,7 +499,7 @@ MonoBehaviour:
   updateOnStateMachineEnter: 0
   updateOnStateMachineExit: 0
   valueOnEnter: 0
-  valueOnExit: 0.1
+  valueOnExit: 0.6
 --- !u!1102 &8305565371048578106
 AnimatorState:
   serializedVersion: 6
@@ -537,7 +537,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: NightBorne_attack
-  m_Speed: 4
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1415328492704085705}
