@@ -13,4 +13,11 @@ public class MusicPlayer : MonoBehaviour
         introSource.Play();
         loopSource.PlayScheduled(AudioSettings.dspTime + introSource.clip.length);
     }
+
+    // Метод для остановки музыки при смерти игрока
+    public void StopMusic()
+    {
+        introSource.Stop();
+        loopSource.Stop();
+    }
 }
