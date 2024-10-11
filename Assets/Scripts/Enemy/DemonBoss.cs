@@ -11,6 +11,9 @@ public class DemonBoss : MonoBehaviour
     public Collider2D deathCollider;
     public List<Transform> waypoints;
 
+    public GameObject keyPrefab; // Префаб ключа
+    public Transform dropPosition; // Позиция, где выпадет ключ
+
     Animator animator;
     Rigidbody2D rb;
     Damageable damageable;
@@ -29,12 +32,18 @@ public class DemonBoss : MonoBehaviour
             animator.SetBool(AnimationStrings.hasTarget, value);
         }
     }
-     public float AttackCooldown { get {
+    public float AttackCooldown
+    {
+        get
+        {
             return animator.GetFloat(AnimationStrings.attackCooldown);
-        } private set {
+        }
+        private set
+        {
             animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));
-        } }
-    
+        }
+    }
+
     public bool CanMove
     {
         get
@@ -63,7 +72,7 @@ public class DemonBoss : MonoBehaviour
         {
             AttackCooldown -= Time.deltaTime;
         }
-}
+    }
 
     private void FixedUpdate()
     {
@@ -134,9 +143,15 @@ public class DemonBoss : MonoBehaviour
 
     public void OnDeath()
     {
-        // Dead flyier falls to the ground
+        // Dead flyer falls to the ground
         rb.gravityScale = 2f;
         rb.velocity = new Vector2(0, rb.velocity.y);
         deathCollider.enabled = true;
+
+        // Спавн ключа при смерти босса
+        if (keyPrefab != null && dropPosition != null)
+        {
+            Instantiate(keyPrefab, dropPosition.position, Quaternion.identity);
+        }
     }
 }

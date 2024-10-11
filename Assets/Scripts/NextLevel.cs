@@ -5,21 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class LevelMove_Ref : MonoBehaviour
 {
-    public int sceneBuildIndex;
+    // Переменная для проверки, подобрал ли игрок ключ
+    private bool hasKey = false;
 
-    // Level move zoned enter, if collider is a player
-    // Move game to another scene
+    // Название сцены для перехода
+    public string sceneName = "YouWon";
+
+    // Метод для вызова, когда игрок подбирает ключ
+    public void CollectKey()
+    {
+        hasKey = true;
+    }
+
+    // Level move zoned enter, если коллайдер это игрок
+    // Переход на другую сцену
     private void OnTriggerEnter2D(Collider2D other)
     {
-        print("Trigger Entered");
-
-        // Could use other.GetComponent<Player>() to see if the game object has a Player component
-        // Tags work too. Maybe some players have different script components?
-        if (other.tag == "Player")
+        // Если игрок попадает в триггер и у него есть ключ
+        if (other.tag == "Player" && hasKey)
         {
-            // Player entered, so move level
-            print("Switching Scene to " + sceneBuildIndex);
-            SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+            // Переход на указанную сцену
+            print("Switching Scene to " + sceneName);
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        }
+        else if (other.tag == "Player" && !hasKey)
+        {
+            // Выводим сообщение, если игрок не подобрал ключ
+            print("You need a key to enter the next level.");
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +11,14 @@ public class NightBorne : MonoBehaviour
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
 
-    Rigidbody2D rb;
-    TouchingDirections touchingDirections;
-    Animator animator;
-    Damageable damageable;
+    public GameObject keyPrefab; // Префаб ключа
+    public Transform dropPosition; // Позиция, где выпадет ключ
+    public float deathDelay = 1.5f; // Задержка перед уничтожением
+
+    private Rigidbody2D rb;
+    private TouchingDirections touchingDirections;
+    private Animator animator;
+    private Damageable damageable;
 
     public enum WalkableDirection { Right, Left }
 
@@ -29,25 +32,15 @@ public class NightBorne : MonoBehaviour
         {
             if (_walkDirection != value)
             {
-                //Direction flipped
-                gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
-
-                if (value == WalkableDirection.Right)
-                {
-                    walkDirectionVector = Vector2.right;
-                }
-                else if (value == WalkableDirection.Left)
-                {
-                    walkDirectionVector = Vector2.left;
-                }
+                // Перевернуть направление
+                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                walkDirectionVector = value == WalkableDirection.Right ? Vector2.right : Vector2.left;
             }
-
             _walkDirection = value;
         }
     }
 
-    public bool _hasTarget = false;
-
+    private bool _hasTarget;
     public bool HasTarget
     {
         get { return _hasTarget; }
@@ -58,24 +51,12 @@ public class NightBorne : MonoBehaviour
         }
     }
 
-    public bool CanMove
-    {
-        get
-        {
-            return animator.GetBool(AnimationStrings.canMove);
-        }
-    }
+    public bool CanMove => animator.GetBool(AnimationStrings.canMove);
 
     public float AttackCooldown
     {
-        get
-        {
-            return animator.GetFloat(AnimationStrings.attackCooldown);
-        }
-        private set
-        {
-            animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));
-        }
+        get => animator.GetFloat(AnimationStrings.attackCooldown);
+        private set => animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));
     }
 
     private void Awake()
@@ -86,12 +67,10 @@ public class NightBorne : MonoBehaviour
         damageable = GetComponent<Damageable>();
     }
 
-
-
-    // Update is called once per frame
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
+
         if (AttackCooldown > 0)
         {
             AttackCooldown -= Time.deltaTime;
@@ -100,7 +79,6 @@ public class NightBorne : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
         {
             FlipDirection();
@@ -109,36 +87,48 @@ public class NightBorne : MonoBehaviour
         if (!damageable.LockVelocity)
         {
             if (CanMove && touchingDirections.IsGrounded)
-                // Accelerate towards max Speed
+            {
                 rb.velocity = new Vector2(
-                   Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed),
-                   rb.velocity.y);
+                    Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed),
+                    rb.velocity.y);
+            }
             else
+            {
                 rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+            }
         }
     }
 
     private void FlipDirection()
     {
-        if (WalkDirection == WalkableDirection.Right)
-        {
-            WalkDirection = WalkableDirection.Left;
-        }
-        else if (WalkDirection == WalkableDirection.Left)
-        {
-            WalkDirection = WalkableDirection.Right;
-        }
-        else
-        {
-            Debug.LogError("Current walkable direction is not se to legal value of right or left");
-        }
+        WalkDirection = WalkDirection == WalkableDirection.Right ? WalkableDirection.Left : WalkableDirection.Right;
     }
 
     public void OnHit(int damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+
+        // Проверка на смерть
+        if (!damageable.IsAlive)
+        {
+            OnDeath(); // Вызов метода смерти
+        }
     }
 
+    public void OnDeath()
+    {
+        damageable.IsAlive = false; // Установка состояния живости в false
+        animator.SetBool("isAlive", false); // Убедитесь, что параметр isAlive существует в аниматоре
+
+        rb.gravityScale = 2f; // Позволяет врагу падать
+        rb.velocity = new Vector2(0, rb.velocity.y); // Остановка движения по горизонтали
+
+        // Спавн ключа при смерти
+        if (keyPrefab != null && dropPosition != null)
+        {
+            Instantiate(keyPrefab, dropPosition.position, Quaternion.identity);
+        }
+    }
     public void OnCliffDetected()
     {
         if (touchingDirections.IsGrounded)

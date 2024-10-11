@@ -499,7 +499,7 @@ MonoBehaviour:
   updateOnStateMachineEnter: 0
   updateOnStateMachineExit: 0
   valueOnEnter: 0
-  valueOnExit: 0.6
+  valueOnExit: 0.4
 --- !u!1102 &8305565371048578106
 AnimatorState:
   serializedVersion: 6
