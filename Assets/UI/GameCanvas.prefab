@@ -2021,7 +2021,7 @@ MonoBehaviour:
   pauseScreen: {fileID: 445646247721207900}
   delayBeforeGameOver: 2
   delayBeforeMainMenu: 10
-  delayBeforeDeathSound: 2
+  delayBeforeDeathSound: 1
 --- !u!82 &1091675828789019119
 AudioSource:
   m_ObjectHideFlags: 0
