@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/LEVELS/YouWon.unity
     guid: 8dbfa3a639edfe441b83a45c849ce1ee
   - enabled: 0
+    path: Assets/LEVELS/Level 3.unity
+    guid: b6e7588f6f4af7e43a69e16602527878
+  - enabled: 0
     path: Assets/Scenes/QuickScene.unity
     guid: a992fc88242240148ab507ff0b43ddda
   m_configObjects:
